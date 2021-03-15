@@ -5,9 +5,6 @@ using UnityEngine;
 // RedRain // Enemy Handler
 // First Started - 3/3/21
 
-
-
-
 // The EnemyState will determine what actions the Enemy will take.
 public enum EnemyState
 {
@@ -19,6 +16,7 @@ public enum EnemyState
     stagger
 
 }
+
 // DefaultMovementType will determine how the enemy moves when in the walking state.
 public enum DefaultMovementType
 {
@@ -31,12 +29,12 @@ public enum DefaultMovementType
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Do not assign values below. They are set as needed or will be assigned by the script.")]
-    public EnemyState currentState;
-    public Rigidbody enemyRb;
-    Vector3 startPosition;
-    Vector3 movementDirection;
-    bool patrolDirectionPositive = true;
+    private EnemyState currentState;
+    private Rigidbody enemyRb;
+    private Vector3 startPosition;
+    private Vector3 movementDirection;
+    private bool patrolDirectionPositive = true;
+
     // player is target by default. This will determine who the enemy checking distance from and/or chasing/attacking.
     private Transform target;
 
@@ -55,11 +53,6 @@ public class Enemy : MonoBehaviour
     [Tooltip("This must match the Tag on the Player. This can be removed and the actual tag placed in script if requested.")]
     public string playerTag;
 
-
-
-
-
-
     void Awake()
     {
         enemyRb = GetComponent<Rigidbody>();
@@ -70,6 +63,7 @@ public class Enemy : MonoBehaviour
         target = GameObject.FindWithTag(playerTag).transform;
         SetStartPos();
         currentState = EnemyState.walking;
+
         // coroutine below is used to redirect enemy movement on random intervals when walking with randomMovement type.
         if (movementType == DefaultMovementType.randomMovement)
         {
@@ -81,6 +75,7 @@ public class Enemy : MonoBehaviour
     {
         // Check Distance, and set enemy to chase or attack the player if needed.
         CheckDistance();
+
         // if not attacking/chasing player, then will check if outside movement range. will set state to ReturningHome and then back to walking once done.
         if (currentState != EnemyState.attacking || currentState != EnemyState.chasingPlayer)
         {
@@ -108,7 +103,7 @@ public class Enemy : MonoBehaviour
             case EnemyState.attacking:
                 AttackCycle();
                 break;
-            default: 
+            default:
                 break;
         }
     }
@@ -166,6 +161,7 @@ public class Enemy : MonoBehaviour
         {
             randomNum = Random.Range(-1, 2);
         }
+
         return randomNum;
     }
 
@@ -182,7 +178,10 @@ public class Enemy : MonoBehaviour
             ChangeState(EnemyState.attacking);
         }
         // else will walk
-        else ChangeState(EnemyState.walking);
+        else
+        {
+            ChangeState(EnemyState.walking);
+        }
     }
 
     private float DistanceFromTarget()
@@ -223,7 +222,8 @@ public class Enemy : MonoBehaviour
             case DefaultMovementType.patrolYAxis:
                 PatrolZ();
                 break;
-            default: break;
+            default: 
+                break;
         }
     }
 
@@ -245,6 +245,7 @@ public class Enemy : MonoBehaviour
                 patrolDirectionPositive = true;
             }
         }
+
         MoveEnemy(movementDirection);
     }
 
@@ -266,6 +267,7 @@ public class Enemy : MonoBehaviour
                 patrolDirectionPositive = true;
             }
         }
+
         MoveEnemy(movementDirection);
     }
 
@@ -294,6 +296,7 @@ public class Enemy : MonoBehaviour
             movementDirection.x = (startPosition.x) - enemyRb.position.x;
             movementDirection.z = (startPosition.z) - enemyRb.position.z;
         }
+
         MoveEnemy(movementDirection);
     }
 
