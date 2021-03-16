@@ -26,7 +26,6 @@ public enum DefaultMovementType
     patrolYAxis
 }
 
-
 public class Enemy : MonoBehaviour
 {
     private EnemyState currentState;
