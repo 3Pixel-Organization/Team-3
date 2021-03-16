@@ -16,18 +16,20 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     void Awake()
     {
-        EventBroker.InitiateGame += SpawnEnemies;
+        EventBroker.InitiateGame += InitGame;
     }
 
     void OnDestroy()
     {
-        EventBroker.InitiateGame -= SpawnEnemies;
+        EventBroker.InitiateGame -= InitGame;
     }
+
+    void InitGame(int countEnemies) => SpawnEnemies(countEnemies, true);
 
     void SpawnEnemy(Vector3 position)
     {
@@ -35,10 +37,15 @@ public class EnemyController : MonoBehaviour
         Enemies.Add(enemy);
     }
 
-    //
-    void SpawnEnemies(int countEnemies)
+    void SpawnEnemies(int countEnemies, bool purge = false)
     {
-        for(int i = 0; i < countEnemies; i++)
+        if (purge)
+        {
+            Enemies.ForEach(x => Destroy(x.gameObject));
+            Enemies.Clear();
+        }
+
+        for (int i = 0; i < countEnemies; i++)
         {
             // Basic Enemy Spawn Range: -50:50 (x and z axis); y = 0.5
             var startingPosition = new Vector3(Random.Range(-50, 51), 0.5f, Random.Range(-50, 51));
