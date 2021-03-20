@@ -48,7 +48,7 @@ public class EnemyController : MonoBehaviour
         for (int i = 0; i < countEnemies; i++)
         {
             // Basic Enemy Spawn Range: -50:50 (x and z axis); y = 0.5
-            var startingPosition = new Vector3(Random.Range(-50, 51), 0.5f, Random.Range(-50, 51));
+            var startingPosition = new Vector3(Random.Range(-10, 10), 0.5f, Random.Range(-10, 10));
             SpawnEnemy(startingPosition);
         }
     }
