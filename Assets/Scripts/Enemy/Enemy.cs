@@ -311,6 +311,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.CompareTag("Bullet") && collision.gameObject.GetComponent<Projectile>().color != gameObject.GetComponent<MeshRenderer>().material.color)
         {
             EventBroker.CallSetGunColor(gameObject.GetComponent<MeshRenderer>().material);
+            EventBroker.CallDeleteEnemy(this);
             Destroy(gameObject);
         }
     }
