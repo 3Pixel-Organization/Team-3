@@ -8,13 +8,20 @@ public class ProjectileShooter : MonoBehaviour
     public Camera cam;
     public GameObject projectile;
     public Transform firePoint;
+    public GameObject Gun;
+
     public float projectileSpeed = 30f;
 
     private Vector3 destination;
     // Start is called before the first frame update
     void Start()
     {
+        EventBroker.SetGunColor += SetGunColor;
+    }
 
+    private void OnDestroy()
+    {
+        EventBroker.SetGunColor -= SetGunColor;
     }
 
     // Update is called once per frame
@@ -47,5 +54,12 @@ public class ProjectileShooter : MonoBehaviour
     {
         var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
+        projectileObj.GetComponentInChildren<ParticleSystem>().startColor = Gun.GetComponent<MeshRenderer>().material.color;
+        projectileObj.GetComponent<Projectile>().color = Gun.GetComponent<MeshRenderer>().material.color;
+    }
+
+    private void SetGunColor(Material material)
+    {
+        Gun.GetComponent<MeshRenderer>().material = material;
     }
 }
