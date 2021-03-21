@@ -6,7 +6,9 @@ public class EnemyController : MonoBehaviour
 {
     private List<Enemy> Enemies;
     public Enemy EnemyPrefab;
+    public List<Material> materials;
 
+    private System.Random random = new System.Random();
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class EnemyController : MonoBehaviour
     void SpawnEnemy(Vector3 position)
     {
         Enemy enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
+        enemy.gameObject.GetComponent<MeshRenderer>().material = materials[random.Next(materials.Count)];
         Enemies.Add(enemy);
     }
 

@@ -6255,6 +6255,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyPrefab: {fileID: 3119511377482967994, guid: 8ab296bfa4337954d84329d40c2b67f1,
     type: 3}
+  materials:
+  - {fileID: 2100000, guid: 7772577d8f50fc74583428f2395b8a0a, type: 2}
+  - {fileID: 2100000, guid: 7a90951f492d4324a810b0cb2226c609, type: 2}
+  - {fileID: 2100000, guid: 5410497039cd7c847a904862382783b5, type: 2}
+  - {fileID: 2100000, guid: 0f813042ce354084c97b5e80255e5394, type: 2}
 --- !u!4 &490988461
 Transform:
   m_ObjectHideFlags: 0
@@ -11634,6 +11639,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c09f0516a973f46b7e38aa0ce3c316, type: 3}
+--- !u!1 &1053169061 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1675847469, guid: 566781db871a5634fbb942c3e84757b3,
+    type: 3}
+  m_PrefabInstance: {fileID: 1989372119}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1054943273
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19631,6 +19642,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1165296547, guid: 566781db871a5634fbb942c3e84757b3, type: 3}
+      propertyPath: Gun
+      value: 
+      objectReference: {fileID: 1053169061}
     - target: {fileID: 6573338351037851506, guid: 566781db871a5634fbb942c3e84757b3,
         type: 3}
       propertyPath: m_Name

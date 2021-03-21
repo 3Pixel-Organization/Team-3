@@ -308,8 +308,9 @@ public class Enemy : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Bullet"))
+        if (collision.gameObject.CompareTag("Bullet") && collision.gameObject.GetComponent<Projectile>().color != gameObject.GetComponent<MeshRenderer>().material.color)
         {
+            EventBroker.CallSetGunColor(gameObject.GetComponent<MeshRenderer>().material);
             Destroy(gameObject);
         }
     }
