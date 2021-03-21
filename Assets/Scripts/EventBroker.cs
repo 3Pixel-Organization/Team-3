@@ -21,5 +21,12 @@ public class EventBroker
     }
 
 
+    public static event Action<Enemy> DeleteEnemy;
+
+    public static void CallDeleteEnemy(Enemy enemy)
+    {
+        DeleteEnemy?.Invoke(enemy);
+    }
+
 
 }

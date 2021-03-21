@@ -24,11 +24,13 @@ public class EnemyController : MonoBehaviour
     void Awake()
     {
         EventBroker.InitiateGame += InitGame;
+        EventBroker.DeleteEnemy += DeleteEnemy;
     }
 
     void OnDestroy()
     {
         EventBroker.InitiateGame -= InitGame;
+        EventBroker.DeleteEnemy -= DeleteEnemy;
     }
 
     void InitGame(int countEnemies) => SpawnEnemies(countEnemies, true);
@@ -53,6 +55,15 @@ public class EnemyController : MonoBehaviour
             // Basic Enemy Spawn Range: -50:50 (x and z axis); y = 0.5
             var startingPosition = new Vector3(Random.Range(-10, 10), 0.5f, Random.Range(-10, 10));
             SpawnEnemy(startingPosition);
+        }
+    }
+
+    void DeleteEnemy(Enemy enemy)
+    {
+        Enemies.Remove(enemy);
+        if (Enemies.Count == 0)
+        {
+            EventBroker.CallInitiateGame(5);
         }
     }
 
