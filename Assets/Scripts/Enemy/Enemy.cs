@@ -221,7 +221,7 @@ public class Enemy : MonoBehaviour
             case DefaultMovementType.patrolYAxis:
                 PatrolZ();
                 break;
-            default: 
+            default:
                 break;
         }
     }
@@ -305,4 +305,12 @@ public class Enemy : MonoBehaviour
         movementDirection = Vector3.zero;
     }
 
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(gameObject);
+        }
+    }
 }
