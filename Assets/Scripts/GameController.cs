@@ -13,7 +13,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log("Number of enemies: " + InitialEnemyCount.ToString());
     }
 
     void InitiateGame()

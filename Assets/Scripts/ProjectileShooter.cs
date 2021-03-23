@@ -61,5 +61,6 @@ public class ProjectileShooter : MonoBehaviour
     private void SetGunColor(Material material)
     {
         Gun.GetComponent<MeshRenderer>().material = material;
+        Debug.Log("Color of the Gun: " + material.color.ToString()); 
     }
 }

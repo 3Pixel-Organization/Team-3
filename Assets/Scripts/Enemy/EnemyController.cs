@@ -39,6 +39,7 @@ public class EnemyController : MonoBehaviour
     {
         Enemy enemy = Instantiate(EnemyPrefab, position, Quaternion.identity);
         enemy.gameObject.GetComponent<MeshRenderer>().material = materials[random.Next(materials.Count)];
+        enemy.gameObject.tag = "Enemy";
         Enemies.Add(enemy);
     }
 
