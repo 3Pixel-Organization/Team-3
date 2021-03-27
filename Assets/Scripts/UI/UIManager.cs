@@ -21,7 +21,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        pausePanel.SetActive(false);
+        //pausePanel.SetActive(false);
     }
 
     void Update()

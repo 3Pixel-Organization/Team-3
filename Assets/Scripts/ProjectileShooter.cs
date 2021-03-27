@@ -35,7 +35,7 @@ public class ProjectileShooter : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             ShootProjectile();
-            audioManager.Play("Shot");
+            //audioManager.Play("Shot");
             animator.SetTrigger("Shot");
         }
     }
