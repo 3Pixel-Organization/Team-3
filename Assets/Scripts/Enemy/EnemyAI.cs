@@ -34,7 +34,7 @@ public class EnemyAI : MonoBehaviour
 
 		if (!playerInSightRange && !playerInAttackRange) Patroling();
 		if (playerInSightRange && !playerInAttackRange) ChasePlayer();
-        if (playerInSightRange && playerInSightRange) AttackPlayer();
+        if (playerInSightRange && playerInAttackRange) AttackPlayer();
     }
 
     private void Patroling()
@@ -65,7 +65,7 @@ public class EnemyAI : MonoBehaviour
 
     private void AttackPlayer()
     {
-        agent.SetDestination(player.position);
+        agent.SetDestination(transform.position);
         transform.LookAt(player);
 
 		if (!alreadyAttacked)
