@@ -20,17 +20,17 @@ public class Sound
     private AudioSource source;
 
     public void SetSource(AudioSource _source)
-	{
-		source = _source;
+    {
+        source = _source;
         source.clip = clip;
-	}
+    }
 
     public void Play()
-	{
+    {
         source.volume = volume * (1 + Random.Range(-randomVolume / 2, randomVolume / 2));
         source.pitch = pitch * (1 + Random.Range(-randomPitch / 2, randomPitch / 2));
         source.loop = loop;
         source.Play();
-	}
+    }
 
 }

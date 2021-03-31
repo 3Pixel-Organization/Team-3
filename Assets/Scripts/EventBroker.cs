@@ -10,9 +10,9 @@ public class EventBroker
     public static void CallInitiateGame(int count)
     {
         InitiateGame?.Invoke(count);
-    }    
-    
-    
+    }
+
+
     public static event Action<Material> SetGunColor;
 
     public static void CallSetGunColor(Material material)
@@ -28,5 +28,17 @@ public class EventBroker
         DeleteEnemy?.Invoke(enemy);
     }
 
+    public static event Action ResumeGame;
 
+    public static void CallResumeGame()
+    {
+        ResumeGame?.Invoke();
+    }
+
+    public static event Action PauseGame;
+
+    public static void CallPauseGame()
+    {
+        PauseGame?.Invoke();
+    }
 }
