@@ -24,7 +24,12 @@ public class AudioManager : MonoBehaviour
     {
 		foreach (Sound s in sounds)
 		{
-            
+			if (!s.playedConstently)
+			{
+				GameObject _go = new GameObject(s.name + "_Sound");
+				_go.transform.SetParent(transform);
+				s.SetSource(_go.AddComponent<AudioSource>());
+			}
 		}
     }
 
@@ -32,7 +37,7 @@ public class AudioManager : MonoBehaviour
 	{
 		foreach (Sound s in sounds)
 		{
-			if (s.name == name)
+			if (s.name == name && s.playedConstently)
 			{
 				GameObject _go = new GameObject(s.name + "_Sound");
 				_go.transform.SetParent(transform);
@@ -40,6 +45,11 @@ public class AudioManager : MonoBehaviour
 
 				s.Play();
 				Destroy(_go, s.clip.length);
+				return;
+			}
+			else if (s.name == name && !s.playedConstently)
+			{
+				s.Play();
 				return;
 			}
 		}

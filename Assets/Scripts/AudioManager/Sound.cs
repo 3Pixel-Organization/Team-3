@@ -17,6 +17,8 @@ public class Sound
     public float randomPitch = 0.1f;
     public bool loop;
 
+    public bool playedConstently = false;
+
     private AudioSource source;
 
     public void SetSource(AudioSource _source)
