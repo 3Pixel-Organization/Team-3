@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
 
     private void InitiateGame()
     {
+        Cursor.visible = false;
         EventBroker.CallInitiateGame(InitialEnemyCount);
     }
 
