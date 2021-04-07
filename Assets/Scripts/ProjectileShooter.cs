@@ -9,13 +9,18 @@ public class ProjectileShooter : MonoBehaviour
     public GameObject projectile;
     public Transform firePoint;
     public GameObject Gun;
+    public Animator animator;
 
     public float projectileSpeed = 30f;
 
     private Vector3 destination;
-    // Start is called before the first frame update
+
+    private AudioManager audioManager;
+
     void Start()
     {
+        audioManager = AudioManager.instance;
+
         EventBroker.SetGunColor += SetGunColor;
     }
 
@@ -30,6 +35,8 @@ public class ProjectileShooter : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             ShootProjectile();
+            audioManager.Play("Shot");
+            animator.SetTrigger("Shot");
         }
     }
 
@@ -52,14 +59,13 @@ public class ProjectileShooter : MonoBehaviour
 
     private void InstantiateProjectile()
     {
-        var projectileObj = Instantiate(projectile, firePoint.position, Quaternion.identity) as GameObject;
+        var projectileObj = Instantiate(projectile, firePoint.position, firePoint.rotation) as GameObject;
         projectileObj.GetComponent<Rigidbody>().velocity = (destination - firePoint.position).normalized * projectileSpeed;
-        projectileObj.GetComponentInChildren<ParticleSystem>().startColor = Gun.GetComponent<MeshRenderer>().material.color;
-        projectileObj.GetComponent<Projectile>().color = Gun.GetComponent<MeshRenderer>().material.color;
     }
 
     private void SetGunColor(Material material)
     {
         Gun.GetComponent<MeshRenderer>().material = material;
+        // Debug.Log("Color of the Gun: " + material.color.ToString()); 
     }
 }

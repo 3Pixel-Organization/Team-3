@@ -306,7 +306,7 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Bullet") && collision.gameObject.GetComponent<Projectile>().color != gameObject.GetComponent<MeshRenderer>().material.color)
         {
