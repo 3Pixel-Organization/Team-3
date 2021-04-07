@@ -45,6 +45,7 @@ public class GameController : MonoBehaviour
     private void PauseGame()
     {
         menu.SetActive(true);
+        Cursor.visible = true;
         Debug.Log("Game Paused!");
         Time.timeScale = 0;
         Cursor.lockState = CursorLockMode.Confined;
@@ -53,6 +54,7 @@ public class GameController : MonoBehaviour
     private void ResumeGame()
     {
         Debug.Log("Game Resumed!");
+        Cursor.visible = false;
         Time.timeScale = 1;
         Cursor.lockState = CursorLockMode.Locked;
     }
