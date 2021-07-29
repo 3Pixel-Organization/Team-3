@@ -10,7 +10,7 @@ public class EnemyMovement : MonoBehaviour
 
     void Start()
     {
-        rb = 
+       // rb = 
     }
 
    
